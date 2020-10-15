@@ -8,4 +8,4 @@ console.log("hello")
 // git checkout mahak
 // git add .
 // git commmit -m "Kya change kra wo"
-// git push --set-upstream origin mahak
+// git push --set-upstream origin mahak OR git push
