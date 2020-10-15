@@ -7,6 +7,14 @@ import Map from "../../shared/components/UIElements/Map";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./CourseItem.css";
 
+import CoursePage from './CoursePage'
+import {
+	BrowserRouter as Router,
+	Route,
+	Redirect,
+	Switch,
+} from "react-router-dom";
+
 const CourseItem = (props) => {
 	const auth = useContext(AuthContext);
 	const [showMap, setShowMap] = useState(false);
@@ -28,7 +36,14 @@ const CourseItem = (props) => {
 		setShowConfirmModal(false);
 		console.log("DELETING...");
 	};
-
+	const routes = (
+		<Switch>
+			<Route path="/courses/:courseId/home">
+				<CoursePage />
+			</Route>
+			<Redirect to="/" />
+		</Switch>
+	);
 	return (
 		<React.Fragment>
 			<Modal
@@ -71,6 +86,7 @@ const CourseItem = (props) => {
 					can't be undone thereafter.
 				</p>
 			</Modal>
+			
 			<li className="place-item">
 				<Card className="place-item__content">
 					<div className="place-item__image">
@@ -94,9 +110,29 @@ const CourseItem = (props) => {
 								DELETE
 							</Button>
 						)}
+
+						
+						
 					</div>
 				</Card>
+				{auth.isLoggedIn && (
+							
+							<Button >
+								
+							<CoursePage 
+							key={props.id}
+							id={props.id}>
+								GoTo Course
+							</CoursePage>
+							</Button>
+						)}
 			</li>
+			<Router>
+				<main>
+					
+						{routes}
+				</main>
+			</Router>
 		</React.Fragment>
 	);
 };
