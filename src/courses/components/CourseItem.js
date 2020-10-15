@@ -3,19 +3,16 @@ import React, { useState, useContext } from "react";
 import Card from "../../shared/components/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
-import Map from "../../shared/components/UIElements/Map";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./CourseItem.css";
 
-import CoursePage from './CoursePage'
 import {
-	BrowserRouter as Router,
-	Route,
-	Redirect,
-	Switch,
+	Link
 } from "react-router-dom";
 
 const CourseItem = (props) => {
+	
+	console.log(props)
 	const auth = useContext(AuthContext);
 	const [showMap, setShowMap] = useState(false);
 	const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -36,14 +33,6 @@ const CourseItem = (props) => {
 		setShowConfirmModal(false);
 		console.log("DELETING...");
 	};
-	const routes = (
-		<Switch>
-			<Route path="/courses/:courseId/home">
-				<CoursePage />
-			</Route>
-			<Redirect to="/" />
-		</Switch>
-	);
 	return (
 		<React.Fragment>
 			<Modal
@@ -115,24 +104,9 @@ const CourseItem = (props) => {
 						
 					</div>
 				</Card>
-				{auth.isLoggedIn && (
-							
-							<Button >
-								
-							<CoursePage 
-							key={props.id}
-							id={props.id}>
-								GoTo Course
-							</CoursePage>
-							</Button>
-						)}
+				<Link to="/coursePage/:courseId" params={{ courseId: props.id }}>Go To Course</Link>
+				
 			</li>
-			<Router>
-				<main>
-					
-						{routes}
-				</main>
-			</Router>
 		</React.Fragment>
 	);
 };

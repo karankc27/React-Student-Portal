@@ -21,6 +21,7 @@ const Users = React.lazy(() => import("./user/pages/Users"));
 const NewCourse = React.lazy(() => import("./courses/pages/NewCourse"));
 const UserCourses = React.lazy(() => import("./courses/pages/UserCourses"));
 const UpdateCourse = React.lazy(() => import("./courses/pages/UpdateCourse"));
+const CoursePage = React.lazy(() => import("./courses/components/CoursePage"));
 
 const App = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -52,6 +53,9 @@ const App = () => {
 				</Route>
 				<Route path="/courses/:courseId">
 					<UpdateCourse />
+				</Route>
+				<Route path="/coursePage/:courseId">
+					<CoursePage />
 				</Route>
 				<Redirect to="/" />
 			</Switch>
