@@ -107,8 +107,8 @@ const CourseItem = (props) => {
 				</Card>
 				<Link to={{
 					pathname: "/coursePage/:courseId",
-					 params: {
-						title: props.title
+					 props: {
+						title: props
 					 }
 						}}>
 						Go To Course</Link>
