@@ -11,8 +11,9 @@ import {
 } from "react-router-dom";
 
 const CourseItem = (props) => {
-	
+
 	console.log(props)
+	console.log('props')
 	const auth = useContext(AuthContext);
 	const [showMap, setShowMap] = useState(false);
 	const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -104,7 +105,13 @@ const CourseItem = (props) => {
 						
 					</div>
 				</Card>
-				<Link to="/coursePage/:courseId" params={{ courseId: props.id }}>Go To Course</Link>
+				<Link to={{
+					pathname: "/coursePage/:courseId",
+					 params: {
+						title: props.title
+					 }
+						}}>
+						Go To Course</Link>
 				
 			</li>
 		</React.Fragment>
