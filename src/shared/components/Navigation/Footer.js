@@ -73,37 +73,7 @@ const Footer = () => {
             </li>
             <li>
               
-            </li>
-            <li>
-              <Link
-                to="/tutors"
-                onClick={() => {
-                  scrollTop();
-                }}
-              >
-                Tutors
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/classrooms"
-                onClick={() => {
-                  scrollTop();
-                }}
-              >
-                Classrooms
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/gallery"
-                onClick={() => {
-                  scrollTop();
-                }}
-              >
-                Gallery
-              </Link>
-            </li>
+            </li>            
             <li>
               <Link
                 to="/contact"
@@ -111,7 +81,7 @@ const Footer = () => {
                   scrollTop();
                 }}
               >
-                Contact
+                Contact 
               </Link>
             </li>
           </ul>
