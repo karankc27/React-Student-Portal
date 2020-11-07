@@ -48,9 +48,9 @@ const CourseItem = (props) => {
 					<h2>
 						<center>
 							{props.description} <br />
-							Price: {props.price} <br></br>
+							 <br></br>
 							<br></br>
-							<Button> Buy Now</Button>
+							<Button> Register</Button>
 						</center>
 					</h2>
 				</div>

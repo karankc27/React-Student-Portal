@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Modal from './Modal';
+import Modal from './EModal';
 import Button from '../FormElements/Button';
 
 const ErrorModal = props => {

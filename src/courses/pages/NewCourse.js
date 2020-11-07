@@ -7,9 +7,11 @@ import {
 	VALIDATOR_MINLENGTH,
 } from "../../shared/util/validators";
 import { useForm } from "../../shared/hooks/form-hook";
+import { useHttpClient } from '../../shared/hooks/http-hook'
 import "./CourseForm.css";
 
 const NewCourse = () => {
+	const {isLoading, error, sendRequest, clearError} = useHttpClient()
 	const [formState, inputHandler] = useForm(
 		{
 			title: {
@@ -30,7 +32,11 @@ const NewCourse = () => {
 
 	const courseSubmitHandler = (event) => {
 		event.preventDefault();
-		console.log(formState.inputs); // send this to the backend!
+		// create course
+		sendRequest('http://localhost:3000/course', 'POST', JSON.stringify({
+			title: formState.inputs.title.value,
+			description: formState.inputs.description.value,
+		})) 
 	};
 
 	return (
