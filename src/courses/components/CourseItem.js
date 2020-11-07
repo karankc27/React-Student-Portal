@@ -114,16 +114,6 @@ const CourseItem = (props) => {
 						
 					</div>
 				</Card>
-<<<<<<< HEAD
-=======
-				<Link to={{
-					pathname: "/coursePage/:courseId",
-					 props: {
-						title: props
-					 }
-						}}>
-						Go To Course</Link>
->>>>>>> 44405d4e4a60ca090312dc92aad89e4a8ca719f2
 				
 			</li>
 		</React.Fragment>
