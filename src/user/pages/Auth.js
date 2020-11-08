@@ -61,7 +61,7 @@ const Auth = () => {
     event.preventDefault();
     if(isLoginMode){
      try{ 
-      sendRequest('http://localhost:3000/app/login', 'POST', JSON.stringify({
+      sendRequest(process.env.REACT_APP_BACKEND_URL +'app/login', 'POST', JSON.stringify({
           email : formState.inputs.email.value,
           password: formState.inputs.password.value
         }),
@@ -77,7 +77,7 @@ const Auth = () => {
   }
     else{
       try{
-        await sendRequest('http://localhost:3000/app/signup', 'POST',JSON.stringify({
+        await sendRequest(process.env.REACT_APP_BACKEND_URL +'app/signup', 'POST',JSON.stringify({
           name: formState.inputs.name.value,
           email : formState.inputs.email.value,
           password: formState.inputs.password.value
