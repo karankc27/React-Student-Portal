@@ -61,9 +61,10 @@ const Auth = () => {
     event.preventDefault();
     if(isLoginMode){
      try{ 
-      sendRequest(process.env.REACT_APP_BACKEND_URL +'app/login', 'POST', JSON.stringify({
+      sendRequest(process.env.REACT_APP_BACKEND_URL +'login', 'POST', JSON.stringify({
           email : formState.inputs.email.value,
-          password: formState.inputs.password.value
+          password: formState.inputs.password.value,
+          role : 'student'
         }),
         {
         'Content-Type': 'application/json'
@@ -72,12 +73,12 @@ const Auth = () => {
       auth.login();
     }
     catch(err){
-
+      console.log(err)
     }
   }
     else{
       try{
-        await sendRequest(process.env.REACT_APP_BACKEND_URL +'app/signup', 'POST',JSON.stringify({
+        await sendRequest(process.env.REACT_APP_BACKEND_URL +'signup', 'POST',JSON.stringify({
           name: formState.inputs.name.value,
           email : formState.inputs.email.value,
           password: formState.inputs.password.value
@@ -102,6 +103,17 @@ const Auth = () => {
       <h2>Login Required</h2>
       <hr />
       <form onSubmit={authSubmitHandler}>
+      {!isLoginMode && (
+          <Input
+          element="input"
+            id="rno"
+            type="text"
+            label="Enrollment Number"
+            validators={[VALIDATOR_REQUIRE()]}
+            errorText="Please enter Enrollment Number"
+            onInput={inputHandler}
+            />
+            )}
         {!isLoginMode && (
           <Input
           element="input"

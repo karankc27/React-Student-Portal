@@ -12,6 +12,7 @@ import Auth from './user/pages/Auth'
 import MainNavigation from './shared/components/Navigation/MainNavigation'
 import { AuthContext } from './shared/context/auth-context'
 import Footer from '../src/shared/components/Navigation/Footer'
+import ErrorPage from '../src/shared/components/UIElements/ErrorPage'
 
 const Users = React.lazy(() => import('./user/pages/Users'))
 const NewCourse = React.lazy(() => import('./courses/pages/NewCourse'))
@@ -61,7 +62,10 @@ const App = () => {
 				<Route path="/about">
 					<About />
 				</Route>
-				<Redirect to="/" />
+				
+				<Route path="/error" >
+					<ErrorPage></ErrorPage>
+				</Route>
 			</Switch>
 		)
 	} else {
@@ -83,7 +87,9 @@ const App = () => {
 				<Route path="/about">
 					<About />
 				</Route>
-				<Redirect to="/auth" />
+				<Route path="/error" >
+					<ErrorPage></ErrorPage>
+				</Route>
 			</Switch>
 		)
 	}

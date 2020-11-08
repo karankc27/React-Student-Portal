@@ -1,7 +1,44 @@
-import React from "react";
+import React, { useState, useContext } from 'react';
 
 import './CoursePage.css'
+import { useHttpClient } from '../../shared/hooks/http-hook'
+
+import { useForm } from '../../shared/hooks/form-hook';
+import { AuthContext } from '../../shared/context/auth-context';
+
+
 const CoursePage = (props) => {
+
+	const auth = useContext(AuthContext);
+  const [isLoginMode, setIsLoginMode] = useState(true);
+  const {isLoading, error, sendRequest, clearError} = useHttpClient()
+  const [formState, inputHandler, setFormData] = useForm(
+    {
+      pdf: {
+        value: '',
+        isValid: false
+      }
+    },
+    false
+  );
+
+	const formSubmitHandler = async event => {
+	event.preventDefault();
+	console.log(formState.inputs)
+     try{ 
+      sendRequest(process.env.REACT_APP_BACKEND_URL +'teacher/assignments/upload/10/7', 'POST', JSON.stringify({
+          pdf : formState.inputs.pdf.value,
+        }),
+        {
+        'Content-Type': 'application/json'
+        },
+      )
+      auth.login();
+    }
+    catch(err){
+      console.log(err)
+    }
+  };
 	console.log(props)
 	return (
 		<div className="maths-page">
@@ -79,7 +116,7 @@ const CoursePage = (props) => {
 				
 				
 				<div className="container">
-			 <h4>Upload Assignment 2</h4><form className="form" >
+			 <h4>Upload Assignment 2</h4><form className="form" onSubmit={formSubmitHandler} >
         		<div>
          		 <Input onChange={onChange} />
         		  <button type="submit">Submit</button>
@@ -104,7 +141,7 @@ const CoursePage = (props) => {
 }
 
 const Input = (props) => (
-	<input type="file" name="file-input" multiple {...props} />
+	<input type="file" name="pdf" multiple {...props} />
   )
   const onChange = (e) => {
     console.log(e.target.files)
