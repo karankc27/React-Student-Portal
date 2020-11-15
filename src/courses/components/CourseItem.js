@@ -13,6 +13,7 @@ import {
 const CourseItem = (props) => {
 
 	console.log(props)
+	console.log(props.id)
 	console.log('props')
 	const auth = useContext(AuthContext);
 	const [showMap, setShowMap] = useState(false);

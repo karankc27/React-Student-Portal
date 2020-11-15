@@ -66,6 +66,7 @@ const App = () => {
 				<Route path="/error" >
 					<ErrorPage></ErrorPage>
 				</Route>
+				<Redirect to= '/'></Redirect>
 			</Switch>
 		)
 	} else {
@@ -90,6 +91,8 @@ const App = () => {
 				<Route path="/error" >
 					<ErrorPage></ErrorPage>
 				</Route>
+				
+				<Redirect to= '/'></Redirect>
 			</Switch>
 		)
 	}

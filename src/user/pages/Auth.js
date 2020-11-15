@@ -13,9 +13,11 @@ import {
 } from '../../shared/util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
 import { AuthContext } from '../../shared/context/auth-context';
+import User from '../components/User'
 import './Auth.css';
 
 const Auth = () => {
+  let name, email
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const {isLoading, error, sendRequest, clearError} = useHttpClient()
@@ -61,15 +63,17 @@ const Auth = () => {
     event.preventDefault();
     if(isLoginMode){
      try{ 
-      sendRequest(process.env.REACT_APP_BACKEND_URL +'login', 'POST', JSON.stringify({
+      const userDetails = await sendRequest(process.env.REACT_APP_BACKEND_URL +'login', 'POST', JSON.stringify({
           email : formState.inputs.email.value,
-          password: formState.inputs.password.value,
-          role : 'student'
+          password: formState.inputs.password.value
         }),
         {
         'Content-Type': 'application/json'
         },
       )
+      email = userDetails.data.email
+      name = userDetails.data.name
+      console.log(name + ' '+email)
       auth.login();
     }
     catch(err){
@@ -87,10 +91,12 @@ const Auth = () => {
             'Content-Type': 'application/json'
         },
         )
-        auth.login();
+
+        switchModeHandler()
+        error = 'Registration Successfull'
       }
       catch(err){
-        
+        console.log(err)
       }
     }
   };
@@ -104,27 +110,27 @@ const Auth = () => {
       <hr />
       <form onSubmit={authSubmitHandler}>
       {!isLoginMode && (
-          <Input
-          element="input"
-            id="rno"
-            type="text"
-            label="Enrollment Number"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter Enrollment Number"
-            onInput={inputHandler}
-            />
-            )}
+        <Input
+        element="input"
+        id="rno"
+        type="text"
+        label="Enrollment Number"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter Enrollment Number"
+        onInput={inputHandler}
+        />
+        )}
         {!isLoginMode && (
           <Input
           element="input"
-            id="name"
-            type="text"
-            label="Your Name"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a name."
-            onInput={inputHandler}
-            />
-            )}
+          id="name"
+          type="text"
+          label="Your Name"
+          validators={[VALIDATOR_REQUIRE()]}
+          errorText="Please enter a name."
+          onInput={inputHandler}
+          />
+          )}
         <Input
           element="input"
           id="email"
