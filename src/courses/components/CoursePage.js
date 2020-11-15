@@ -92,6 +92,7 @@ const CoursePage = (props) => {
 			<ul className="page-list">
 			  <h3>Week 1</h3> 
 			  <br></br><h4>Arrays and Big-O Notation</h4> <br></br>
+			  <br></br><li><h4>Arrays and Big-O Notation</h4></li>
 			  <li>A quick review of arrays in Java and arrays as data structures.</li>
 			  <li>Big-O notations and big-O values for array operations.</li>
 			  <br></br>
@@ -107,14 +108,14 @@ const CoursePage = (props) => {
 				<br></br>
 				
 				<h3>Week 2</h3> 
-			  <br></br><h4>Sort Algorithms</h4><br></br>
+			  <br></br><li><h4>Sort Algorithms</h4></li>
 			  <li>Detailed desciption of bubble sort, selection sort, insertion sort.</li>
 			  <li>Detailed desciption of merge sort, quick sort, and radix sort.</li>
 				<br></br>
 				
 				
 				<div className="container">
-				<form className="form" >
+				<form className="form" onSubmit={formSubmitHandler}>
         		<div>
 				<b>Upload Assignment 2 :  </b>  < Input onChange={onChange} />
         		  <button type="submit">Submit</button>
@@ -125,6 +126,7 @@ const CoursePage = (props) => {
 				
 				<h3>Week 3</h3> 
 			  <br></br><h4>Lists</h4><br></br>
+			  <br></br><li><h4>Lists</h4></li>
 			  <li>Abstract data types and array lists in java.</li>
 			  <li>Singly linked lists and doubly linked lists.</li>
 		          <br></br>
@@ -140,6 +142,7 @@ const CoursePage = (props) => {
 		
 		<h3>Week 4</h3> 
 			  <br></br><h4>Stacks and Queues</h4><br></br>
+			  <br></br><li><h4>Stacks and Queues</h4></li>
 			  <li>Theory and implementation of stack.</li>
 			  <li>Theory and implementation of queue and circular queue.</li>
 			  <br></br>
@@ -156,6 +159,7 @@ const CoursePage = (props) => {
 		
 		<h3>Week 5</h3> 
 			  <br></br><h4>Search Algorithms</h4><br></br>
+			  <br></br><li><h4>Search Algorithms</h4></li>
 			  <li>Linear search algorithm.</li>
 			  <li>Binary search algorithm.</li>
 			  <br></br>
