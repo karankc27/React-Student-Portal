@@ -38,6 +38,8 @@ const NewCourse = () => {
 
 	const courseSubmitHandler = async(event) => {
 		event.preventDefault();
+		let week = formState.inputs.week.value
+		week=week.split('\n')
 		try{
 			// create course
 			await sendRequest(process.env.REACT_APP_BACKEND_URL + 'admin/courses/new', 'POST', JSON.stringify({
@@ -46,7 +48,7 @@ const NewCourse = () => {
 				cid:formState.inputs.cid.value,
 				id:formState.inputs.id.value,
 				imageUrl:formState.inputs.imageUrl.value,
-
+				week:week
 			}),
 			{'Content-Type' : 'application/json'}
 			) 
@@ -104,6 +106,15 @@ const NewCourse = () => {
 				label="Image Url"
 				validators={[VALIDATOR_REQUIRE()]}
 				errorText="Please enter a valid image."
+				onInput={inputHandler}
+			/>
+			<Input
+				id="week"
+				element="textarea"
+				type="textbox"
+				label="Weekly Description (Line Separated)"
+				validators={[VALIDATOR_REQUIRE()]}
+				errorText="Please enter a valid description"
 				onInput={inputHandler}
 			/>
 			<Button type="submit">

@@ -15,6 +15,7 @@ import { useForm } from '../../shared/hooks/form-hook';
 import { AuthContext } from '../../shared/context/auth-context';
 import User from '../components/User'
 import './Auth.css';
+import UserProfile from '../../config'
 
 const Auth = () => {
   let name, email
@@ -73,6 +74,9 @@ const Auth = () => {
         },
       )
       email = userDetails.data.email
+      window.email=null
+      console.log(email)
+      window.email=email
       name = userDetails.data.name
       console.log(name + ' '+email)
       auth.login();
@@ -82,6 +86,7 @@ const Auth = () => {
     }
   }
     else{
+      window.email=null
       try{
         await sendRequest(process.env.REACT_APP_BACKEND_URL +'signup', 'POST',JSON.stringify({
           name: formState.inputs.name.value,

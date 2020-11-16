@@ -1,58 +1,39 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 
 import './CoursePage.css'
-import { useHttpClient } from '../../shared/hooks/http-hook'
-
-import { useForm } from '../../shared/hooks/form-hook';
-import { AuthContext } from '../../shared/context/auth-context';
 import axios from 'axios';
 import Modal from './EModal'
 
-const onChangeHandler=event=>{
+import { useHttpClient } from '../../shared/hooks/http-hook'
 
-    console.log(event.target.files[0])
+const onChangeHandler=event=>{
+	console.log(event.target.files[0])
 	state.selectedFile = event.target.files[0]
 }
 let state = {
 	selectedFile: null
 }
-let error= null
-const CoursePage = (props) => {
+const CoursePage =(props) => {
+	let { isLoading, error, sendRequest, clearError } = useHttpClient()
+	const email = window.email
 	const course = props.history.location.params
 	const weeks = course.weeks
 	console.log(course)
-	const auth = useContext(AuthContext);
-  const [isLoginMode, setIsLoginMode] = useState(true);
-  const {isLoading, sendRequest, clearError} = useHttpClient()
-  const [formState, inputHandler, setFormData] = useForm(
-    {
-      pdf: {
-        value: '',
-        isValid: false
-	  },
-	  assignment:{
-		  value: '',
-		  isValid: false
-	  }
-    },
-    false
-  );
-
-  function myApp(){
+		
+		function myApp(){
 	
-	let i=1
-	return (<div>
+			let i=0
+			return (<div>
 				 {weeks.map(week=> (
 					 <div>
-				<h3>Week {i} </h3> <br></br>
+				<h3>Week {++i} </h3> <br></br>
 			  <li>{week}</li>
-			  {/* <li>Big-O notations and big-O values for array operations.</li> */}
 			  <br></br>
 
 			  <div className="container">
 			  
 			  <form className="form" onSubmit={teacherFormSubmitHandler}>
-				<div>
+				  <div>
 				<b>Teacher Upload Assignment {i} :  </b>  
 				< input type='text' label='assignment' element='input' id='assignment' value={i.toString()} />
 				<input type='file' name='pdf' label='pdf' onChange={onChangeHandler}/>
@@ -76,34 +57,34 @@ const CoursePage = (props) => {
 				 ))}
 				</div>
 	)}
-const formSubmitHandler = async event => {
-	event.preventDefault()
-	  const data = new FormData() 
-	  data.append('pdf', state.selectedFile)
+	const formSubmitHandler = async event => {
+		event.preventDefault()
+		const data = new FormData() 
+		data.append('pdf', state.selectedFile)
 	  console.log(data)
-     try{ 
-		 axios.post(process.env.REACT_APP_BACKEND_URL +`student/assignments/upload/${course.cid}/karankaramchandani5@gmail.com`, data, { // receive two parameter endpoint url ,form data 
-	})
-	.then(res => { // then print response status
-		console.log(res.data)
-		alert(res.data.data.status)
-		error=res.data.data.status
-	})
+	  try{ 
+		  axios.post(process.env.REACT_APP_BACKEND_URL +`student/assignments/upload/${course.cid}/${email}`, data, { // receive two parameter endpoint url ,form data 
+		  })
+		  .then(res => { 
+			console.log(res.data)
+			alert(res.data.data.percentage)
+			error=res.data.data.status
+		})
     }
     catch(err){
-	  console.log(err)
+		console.log(err)
 	}
-  };
+};
 
-  const teacherFormSubmitHandler = async event => {
-	  event.preventDefault()
+const teacherFormSubmitHandler = async event => {
+	event.preventDefault()
 	  const data = new FormData() 
 	  data.append('pdf', state.selectedFile)
 	  console.log(data)
      try{ 
 		 axios.post(process.env.REACT_APP_BACKEND_URL +`teacher/assignments/upload/${course.cid}/teacher@gmail.com`, data, { // receive two parameter endpoint url ,form data 
 	})
-	.then(res => { // then print response status
+	.then(res => { 
 		console.log(res)
 		alert(res.data.data.status)
 		error=res.data.data.status
@@ -116,7 +97,7 @@ const formSubmitHandler = async event => {
 
 	return (
 		<React.Fragment>
-			<Modal error={error}></Modal>
+		<Modal error={error} onClear={clearError} />
 		<div className="maths-page">
 		  <div className="page-wrapper">
 			<h1 className="page-title">{course.title}</h1>
@@ -172,8 +153,4 @@ const formSubmitHandler = async event => {
 		</React.Fragment>
 	  );
 }
-
-  const onChange = (e) => {
-    console.log(e.target.files)
-  }
 export default CoursePage;
