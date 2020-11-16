@@ -4,10 +4,12 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.11.0",
+    "axios": "^0.21.0",
     "mdbreact": "^4.27.0",
     "node-fetch": "^2.6.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-file-input": "^0.2.5",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^4.0.0",
     "react-transition-group": "^4.3.0",
