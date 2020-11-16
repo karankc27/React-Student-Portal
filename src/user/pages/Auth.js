@@ -65,7 +65,8 @@ const Auth = () => {
      try{ 
       const userDetails = await sendRequest(process.env.REACT_APP_BACKEND_URL +'login', 'POST', JSON.stringify({
           email : formState.inputs.email.value,
-          password: formState.inputs.password.value
+          password: formState.inputs.password.value,
+          role : 'student'
         }),
         {
         'Content-Type': 'application/json'
@@ -85,7 +86,8 @@ const Auth = () => {
         await sendRequest(process.env.REACT_APP_BACKEND_URL +'signup', 'POST',JSON.stringify({
           name: formState.inputs.name.value,
           email : formState.inputs.email.value,
-          password: formState.inputs.password.value
+          password: formState.inputs.password.value,
+          role : 'student'
         }),
         {
             'Content-Type': 'application/json'

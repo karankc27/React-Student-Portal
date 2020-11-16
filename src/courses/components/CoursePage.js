@@ -5,10 +5,57 @@ import { useHttpClient } from '../../shared/hooks/http-hook'
 
 import { useForm } from '../../shared/hooks/form-hook';
 import { AuthContext } from '../../shared/context/auth-context';
+import App from '../../App';
 
 
 const CoursePage = (props) => {
-	console.log(props)
+
+	function myApp(){
+		let i=1
+		return (<div>
+					 {weeks.map(week=> (
+						 <div>
+					<h3>Week {i} </h3> <br></br>
+				  <li>{week}</li>
+				  {/* <li>Big-O notations and big-O values for array operations.</li> */}
+				  <br></br>
+	
+				  <div className="container">
+				  
+				  <form className="form" onSubmit={teacherFormSubmitHandler}>
+					<div>
+					<b>Teacher Upload Assignment {i} :  </b>  
+					< Input type='text' label='assignment' element='input' id='assignment' value={i} />
+					<Input
+						id="pdf"
+						element="input"
+						type="file"
+						label="pdf"
+						errorText="Please enter a valid id."
+	
+					/>
+					  <button type="submit" >Submit</button>
+						</div>
+					  </form>
+				 
+				 <form className="form" onSubmit={formSubmitHandler}>
+					<div>
+					<b>Upload Assignment {i++} :  </b>  < Input type='file' />
+					  <button type="submit" >Submit</button>
+						</div>
+					  </form>
+				</div>
+					<br></br>
+					</div>
+					 ))}
+					</div>
+		)}
+	const course = props.history.location.params
+	const weeks = course.weeks
+	weeks.map(week => {
+		console.log(week)
+	})
+	console.log(course)
 	const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const {isLoading, error, sendRequest, clearError} = useHttpClient()
@@ -25,7 +72,7 @@ const CoursePage = (props) => {
 	const formSubmitHandler = async event => {
 	console.log('In form submit handler')
 	event.preventDefault();
-	console.log(formState.inputs.pdf.value)
+	console.log(formState.inputs)
      try{ 
       const res = await sendRequest(process.env.REACT_APP_BACKEND_URL +'teacher/assignments/upload/10/7', 'POST', JSON.stringify({
           pdf : formState.inputs.pdf.value,
@@ -40,14 +87,33 @@ const CoursePage = (props) => {
       console.log(err)
     }
   };
-	console.log(props)
+
+  const teacherFormSubmitHandler = async event => {
+	  console.log(formState.inputs)
+	console.log('In teacher form submit handler')
+	event.preventDefault();
+     try{ 
+      const res = await sendRequest(process.env.REACT_APP_BACKEND_URL +'teacher/assignments/upload/10/7', 'POST', JSON.stringify({
+          pdf : formState.inputs.pdf.value,
+        }),
+        {
+        'Content-Type': 'application/json'
+        },
+	  )
+	  console.log(res)
+    }
+    catch(err){
+      console.log(err)
+    }
+  };
+
 	return (
 		<div className="maths-page">
 		  <div className="page-wrapper">
-			<h1 className="page-title">{props.title} Data Structures and Algorithms in Java</h1>
+			<h1 className="page-title">{course.title}</h1>
 			<p className="page-paragraph">
-			  Learn the strengths and weaknesses of a variety of data structures, so you can choose the best data structure for your data and applications. Also Learn many of the algorithms commonly used to sort data, so your applications will perform efficiently when sorting large datasets.
-			</p>
+			 	{course.description}
+			 	</p>
 			<hr />
 			<div className="page-cards-wrapper">
 			  <div className="page-card" style={{ backgroundColor: "#FAC8CD" }}>
@@ -90,7 +156,13 @@ const CoursePage = (props) => {
 			<hr />
 			<h1 className="page-title">Course Details</h1>
 			<ul className="page-list">
-			  <h3>Week 1</h3> 
+
+				
+			{myApp()}
+				
+
+
+			{/* <h3>Week 1</h3> 
 			  <br></br><h4>Arrays and Big-O Notation</h4> <br></br>
 			  <br></br><li><h4>Arrays and Big-O Notation</h4></li>
 			  <li>A quick review of arrays in Java and arrays as data structures.</li>
@@ -172,7 +244,7 @@ const CoursePage = (props) => {
         			</div>
       			</form>
     		</div>
-				<br></br>
+				<br></br> */}
 
 			  
 
@@ -182,6 +254,7 @@ const CoursePage = (props) => {
 		</div>
 	  );
 }
+
 
 const Input = (props) => (
 	<input type="file" name="pdf" multiple {...props} />

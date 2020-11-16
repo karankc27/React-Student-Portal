@@ -56,8 +56,7 @@ const App = () => {
 				<Route path="/courses/:courseId">
 					<UpdateCourse />
 				</Route>
-				<Route path="/coursePage/:courseId">
-					<CoursePage />
+				<Route path="/coursePage/:courseId" component={CoursePage}>
 				</Route>
 				<Route path="/about">
 					<About />

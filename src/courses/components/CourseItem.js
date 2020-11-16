@@ -86,9 +86,13 @@ const CourseItem = (props) => {
 					<div className="place-item__info">
 						
 					<Link className='link' to={{
-					pathname: "/coursePage/:courseId",
+					pathname: `/coursePage/${props.id}`,
 					 params: {
-						title: props.title
+						title: props.title,
+						description : props.description,
+						id: props.id,
+						cid: props.cid,
+						weeks: props.week
 					 }
 						}}>
 						<h2 >{props.title}</h2>

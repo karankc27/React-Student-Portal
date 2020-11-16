@@ -29,6 +29,8 @@ const CourseList = (props) => {
 					description={course.description}
 					creatorId={course.creator}
 					price={course.price}
+					cid = {course.cid}
+					week = {course.week}
 				/>
 			))}
 		</ul>
