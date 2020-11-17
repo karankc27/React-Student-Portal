@@ -32,7 +32,7 @@ const CoursePage =(props) => {
 
 			  <div className="container">
 			  
-			  <form className="form" onSubmit={teacherFormSubmitHandler}>
+			  {window.email=='karankaramchandani5@gmail.com' &&(<form className="form" onSubmit={teacherFormSubmitHandler}>
 				  <div>
 				<b>Teacher Upload Assignment {i} :  </b>  
 				< input type='text' label='assignment' element='input' id='assignment' value={i.toString()} />
@@ -40,7 +40,7 @@ const CoursePage =(props) => {
 
 				  <button type="submit" >Submit</button>
 					</div>
-				  </form>
+				  </form>)}
 			 
 			 <form className="form" onSubmit={formSubmitHandler}>
 			 <div>
