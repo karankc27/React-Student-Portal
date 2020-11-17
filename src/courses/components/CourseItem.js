@@ -117,18 +117,15 @@ const CourseItem = (props) => {
 						<Button inverse onClick={openMapHandler}>
 							REGISTER
 						</Button>
-						{auth.isLoggedIn && (
+						{auth.isLoggedIn && window.email=='karankaramchandani5@gmail.com' && (
 							<Button to={`/courses/${props.id}`}>EDIT</Button>
 						)}
 
-						{auth.isLoggedIn && (
+						{auth.isLoggedIn && window.email=='karankaramchandani5@gmail.com' &&(
 							<Button danger onClick={showDeleteWarningHandler}>
 								DELETE
 							</Button>
-						)}
-
-						
-						
+						)}	
 					</div>
 				</Card>
 				
