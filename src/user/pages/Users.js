@@ -38,10 +38,18 @@ const Users = () => {
 	  const fetchUsers = async () => {
 		try {
 		  const responseData = await sendRequest(
-			process.env.REACT_APP_BACKEND_URL +'app/users'
+			process.env.REACT_APP_BACKEND_URL+'users'
 		  );
-  
-		  setLoadedUsers(responseData.users);
+			console.log(responseData.data)
+			let res= []
+			for(let data of responseData.data){
+
+				console.log(data)
+				res.push(data)
+				
+			}
+			console.log(res)
+		  setLoadedUsers(res);
 		} catch (err) {}
 	  };
 	  fetchUsers();

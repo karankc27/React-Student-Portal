@@ -21,9 +21,9 @@ const UsersList = (props) => {
 				<UserItem
 					key={user.id}
 					id={user.id}
-					image={user.image}
+					role={user.role}
 					name={user.name}
-					courseCount={user.courses.length}
+					courseCount={user.courses}
 				/>
 			))}
 		</ul>
