@@ -26,7 +26,7 @@ const NavLinks = (props) => {
 					<NavLink to={`/${auth.userId}/courses`}>MY Courses</NavLink>
 				</li>
 			)}
-			{auth.isLoggedIn && (
+			{auth.isLoggedIn && window.email==='karankaramchandani5@gmail.com'&& (
 				<li>
 					<NavLink to="/courses/new">Add Courses</NavLink>
 				</li>
