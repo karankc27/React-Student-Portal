@@ -1,4 +1,8 @@
 import React, { useState, useContext } from "react";
+import axios from 'axios';
+
+import { useHttpClient } from '../../shared/hooks/http-hook'
+
 
 import Card from "../../shared/components/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
@@ -31,9 +35,17 @@ const CourseItem = (props) => {
 		setShowConfirmModal(false);
 	};
 
-	const confirmDeleteHandler = () => {
+	const confirmDeleteHandler = async() => {
 		setShowConfirmModal(false);
+		console.log(props.cid)
 		console.log("DELETING...");
+		try{
+			const res =await axios.get( `http://localhost:3000/admin/courses/delete/${props.cid}` ) 
+			console.log(res)
+		}
+		catch(err){
+			console.log(err)
+		}
 	};
 	return (
 		<React.Fragment>
