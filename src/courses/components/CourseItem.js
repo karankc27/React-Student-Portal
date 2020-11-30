@@ -36,16 +36,18 @@ const CourseItem = (props) => {
 	};
 
 	const confirmDeleteHandler = async() => {
-		setShowConfirmModal(false);
 		console.log(props.cid)
 		console.log("DELETING...");
 		try{
-			const res =await axios.get( `http://localhost:3000/admin/courses/delete/${props.cid}` ) 
+
+			const res =await axios.get( `${process.env.REACT_APP_BACKEND_URL}admin/courses/delete/${props.cid}` ) 
+			
 			console.log(res)
 		}
 		catch(err){
 			console.log(err)
 		}
+		setShowConfirmModal(false);
 	};
 	return (
 		<React.Fragment>
