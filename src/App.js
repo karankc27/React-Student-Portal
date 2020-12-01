@@ -19,6 +19,7 @@ const NewCourse = React.lazy(() => import('./courses/pages/NewCourse'))
 const UserCourses = React.lazy(() => import('./courses/pages/UserCourses'))
 const UpdateCourse = React.lazy(() => import('./courses/pages/UpdateCourse'))
 const CoursePage = React.lazy(() => import('./courses/components/CoursePage'))
+const ViewAss = React.lazy(() => import('./app/pages/viewassignment'))
 
 const About = React.lazy(() => import('./app/pages/About'))
 
@@ -57,6 +58,9 @@ const App = () => {
 					<UpdateCourse />
 				</Route>
 				<Route path="/coursePage/:courseId" component={CoursePage}>
+				</Route>
+				<Route path="/viewassignments/:courseId" component={ViewAss}>
+					
 				</Route>
 				<Route path="/about">
 					<About />

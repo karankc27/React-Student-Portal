@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from "react-router-dom";
 import './CoursePage.css'
 import axios from 'axios';
 import Modal from './EModal'
@@ -42,7 +42,7 @@ const CoursePage =(props) => {
 					</div>
 				  </form>)}
 			 
-			 <form className="form" onSubmit={formSubmitHandler}>
+			 {window.email!='karankaramchandani5@gmail.com' &&(<form className="form" onSubmit={formSubmitHandler}>
 			 <div>
 				<b>Student Upload Assignment {i} :  </b>  
 				< input type='text' label='assignment' element='input' id='assignment' value={i.toString()} />
@@ -50,7 +50,8 @@ const CoursePage =(props) => {
 
 				  <button type="submit" >Submit</button>
 					</div>
-				  </form>
+				  </form>)}
+			
 			</div>
 				<br></br>
 				</div>
@@ -105,6 +106,13 @@ const teacherFormSubmitHandler = async event => {
 			 	{course.description}
 			 	</p>
 			<hr />
+			<Link className='link' to={{
+				pathname: `/viewassignments/${course.cid}`,
+				 params: {
+					cid: course.cid,
+				 }}}>
+				 <h2 >View Assignments</h2>
+				 </Link>
 			<div className="page-cards-wrapper">
 			  <div className="page-card" style={{ backgroundColor: "#FAC8CD" }}>
 				<div className="page-card-img">
