@@ -1,6 +1,8 @@
-
+import {Link} from 'react-router-dom'
 import React, {Component} from 'react'
 import axios from 'axios'
+import Card from "../../shared/components/UIElements/Card";
+import "./UserItem.css";
 
 export default class users extends Component {
     constructor(props) {
@@ -20,52 +22,47 @@ export default class users extends Component {
                     return u.courseId==this.state.cid && u.percentage
                 })
                 const users = data.map(u =>
+                    <li className="user-item">
+			<Card className="user-item__content">
+				<Link>
+					
+					<div className="user-item__info">
+                    <h3>Email: {u.email}</h3>
+                    <h3>Words Matched: {u.words_matched}</h3>
+                    <h3>Total Words: {u.max_words}</h3>
+                    <h3>Percentage: {u.percentage.substring(0,5)}%</h3>
+						
+					</div>
+				</Link>
+			</Card>
+		</li>
                     
-                    <table >
-                        
-                   <br></br>
-                    <td>{u.courseId}</td>
-                    <td>{u.email.substring(0,12)}</td>
-                    <td>{u.words_matched}</td>
-                    <td>{u.max_words}</td>
-                    <td>{u.percentage.substring(0,5)}%</td>
-
-                    </table>
-                )
                     
-
+                    )
+                    
+                    
                     this.setState({
                         users
                     })
-
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-
-    }
-    componentDidMount(){
-        this.getUsersData()
-    }
-    render() {
-        return (
-            <div>
-                <style>{`
-                    table{
-                        border:1px solid black;
-                     }
-                `}</style>
+                    
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+                
+            }
+            componentDidMount(){
+                this.getUsersData()
+            }
+            render() {
+                return (
+                    <div>
                 <div>
-                    <h1 align='center'>Assignments</h1>
-                    <table >
-                        <th>CourseId</th>
-                        <th>RNO</th>
-                        <th>Words Matched</th>
-                        <th>MAX WORDS</th>
-                        <th>PERCENTAGE</th>
-                    </table>
+        <h1 align='center'>Assignments (CourseID {this.state.cid})</h1>
                     <br></br>
+                <ul className="users-list">
                     {this.state.users}
+                    </ul>
                 </div>
             </div>
         )

@@ -105,14 +105,14 @@ const teacherFormSubmitHandler = async event => {
 			<p className="page-paragraph">
 			 	{course.description}
 			 	</p>
-			<hr />
 			<Link className='link' to={{
 				pathname: `/viewassignments/${course.cid}`,
-				 params: {
+				params: {
 					cid: course.cid,
-				 }}}>
+				}}}>
 				 <h2 >View Assignments</h2>
 				 </Link>
+				<hr />
 			<div className="page-cards-wrapper">
 			  <div className="page-card" style={{ backgroundColor: "#FAC8CD" }}>
 				<div className="page-card-img">
