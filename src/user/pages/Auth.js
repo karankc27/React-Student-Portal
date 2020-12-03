@@ -74,8 +74,6 @@ const Auth = () => {
         },
       )
       email = userDetails.data.email
-      window.email=null
-      console.log(email)
       window.email=email
       name = userDetails.data.name
       console.log(name + ' '+email)
@@ -92,6 +90,7 @@ const Auth = () => {
           name: formState.inputs.name.value,
           email : formState.inputs.email.value,
           password: formState.inputs.password.value,
+          rno: formState.inputs.rno.value,
           role : 'student'
         }),
         {

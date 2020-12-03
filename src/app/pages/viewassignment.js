@@ -27,7 +27,7 @@ export default class users extends Component {
 				<Link>
 					
 					<div className="user-item__info">
-                    <h3>Email: {u.email}</h3>
+                    <h3>Roll No: {u.rno}</h3>
                     <h3>Words Matched: {u.words_matched}</h3>
                     <h3>Total Words: {u.max_words}</h3>
                     <h3>Percentage: {u.percentage.substring(0,5)}%</h3>

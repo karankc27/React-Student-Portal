@@ -36,6 +36,12 @@
 	font-weight: normal;
 	color: #f2a365;
 }
+.user-item__info h4 {
+	font-size: 1.1rem;
+	margin: 0 0 0.5rem 0;
+	font-weight: normal;
+	color: #b2ebf2;
+}
 
 .user-item:hover h2,
 .user-item:active h2,

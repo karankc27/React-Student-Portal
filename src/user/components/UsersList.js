@@ -23,7 +23,8 @@ const UsersList = (props) => {
 					id={user.id}
 					role={user.role}
 					name={user.name}
-					courseCount={user.courses}
+					email={user.email}
+					rno = {user.rno}
 				/>
 			))}
 		</ul>

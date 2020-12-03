@@ -12,11 +12,12 @@ const UserItem = (props) => {
 				<Link to={`/${props.id}/places`}>
 					
 					<div className="user-item__info">
-						<h2>{props.name}</h2>
-						<h3>
-							{props.role}{" "}
+						<h2> {props.name} </h2> 
+					<h4>RNo: {props.rno}</h4>
+						<h4>
+							{props.email}{" "}
 							
-						</h3>
+						</h4>
 					</div>
 				</Link>
 			</Card>
