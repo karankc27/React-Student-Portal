@@ -13,9 +13,7 @@ import {
 } from '../../shared/util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
 import { AuthContext } from '../../shared/context/auth-context';
-import User from '../components/User'
 import './Auth.css';
-import UserProfile from '../../config'
 
 const Auth = () => {
   let name, email
@@ -99,7 +97,6 @@ const Auth = () => {
         )
 
         switchModeHandler()
-        error = 'Registration Successfull'
       }
       catch(err){
         console.log(err)

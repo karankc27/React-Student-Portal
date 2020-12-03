@@ -1,5 +1,4 @@
 import React , {useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
 
 import CourseList from "../components/CoursesList";
 import { useHttpClient } from '../../shared/hooks/http-hook'
@@ -33,7 +32,6 @@ const UserCourses = () => {
 	const { isLoading, error, sendRequest, clearError } = useHttpClient()
 	const [loadedCourses, setLoadedCourses] = useState()
 
-	const userId = useParams().userId;
 	useEffect(()=> {
 		const fetchCourses = async()=> {
 			try{

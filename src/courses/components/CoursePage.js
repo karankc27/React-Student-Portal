@@ -14,7 +14,7 @@ let state = {
 	selectedFile: null
 }
 const CoursePage =(props) => {
-	let { isLoading, error, sendRequest, clearError } = useHttpClient()
+	let { error, clearError } = useHttpClient()
 	const email = window.email
 	const course = props.history.location.params
 	const weeks = course.weeks
@@ -32,7 +32,7 @@ const CoursePage =(props) => {
 
 			  <div className="container">
 			  
-			  {window.email=='karankaramchandani5@gmail.com' &&(<form className="form" onSubmit={teacherFormSubmitHandler}>
+			  {window.email==='karankaramchandani5@gmail.com' &&(<form className="form" onSubmit={teacherFormSubmitHandler}>
 				  <div>
 				<b>Teacher Upload Assignment {i} :  </b>  
 				< input type='text' label='assignment' element='input' id='assignment' value={i.toString()} />
@@ -42,7 +42,7 @@ const CoursePage =(props) => {
 					</div>
 				  </form>)}
 			 
-			 {window.email!='karankaramchandani5@gmail.com' &&(<form className="form" onSubmit={formSubmitHandler}>
+			 {window.email!=='karankaramchandani5@gmail.com' &&(<form className="form" onSubmit={formSubmitHandler}>
 			 <div>
 				<b>Student Upload Assignment {i} :  </b>  
 				< input type='text' label='assignment' element='input' id='assignment' value={i.toString()} />

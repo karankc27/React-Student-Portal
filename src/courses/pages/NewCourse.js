@@ -4,15 +4,13 @@ import {useHistory} from 'react-router-dom'
 import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
 import {
-	VALIDATOR_REQUIRE,
-	VALIDATOR_MINLENGTH,
+	VALIDATOR_REQUIRE
 } from "../../shared/util/validators";
 import ErrorModal from '../../shared/components/UIElements/ErrorModal'
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner'
 import { useForm } from "../../shared/hooks/form-hook";
 import { useHttpClient } from '../../shared/hooks/http-hook'
 import "./CourseForm.css";
-import ErrorPage from '../../shared/components/UIElements/ErrorPage'
 
 const NewCourse = () => {
 	const {isLoading, error, sendRequest, clearError} = useHttpClient()
@@ -56,7 +54,7 @@ const NewCourse = () => {
 		}
 		// Redirect to diff page
 		catch(err){
-			error=err
+			console.log(err)
 		}
 	};
 
