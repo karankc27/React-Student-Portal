@@ -19,7 +19,7 @@ export default class users extends Component {
                 let data = res.data.data
                 console.log(data)
                 data = data.filter(u => {
-                    return u.courseId==this.state.cid && u.percentage
+                    return u.courseId===this.state.cid && u.percentage
                 })
                 const users = data.map(u =>
                     <li className="user-item">

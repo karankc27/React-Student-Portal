@@ -1,9 +1,6 @@
 import React, { useState, useContext } from "react";
 import axios from 'axios';
 
-import { useHttpClient } from '../../shared/hooks/http-hook'
-
-
 import Card from "../../shared/components/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIElements/Modal";
@@ -119,11 +116,11 @@ const CourseItem = (props) => {
 						<Button inverse onClick={openMapHandler}>
 							REGISTER
 						</Button>
-						{auth.isLoggedIn && window.email=='karankaramchandani5@gmail.com' && (
+						{auth.isLoggedIn && window.email==='karankaramchandani5@gmail.com' && (
 							<Button to={`/courses/${props.id}`}>EDIT</Button>
 						)}
 
-						{auth.isLoggedIn && window.email=='karankaramchandani5@gmail.com' &&(
+						{auth.isLoggedIn && window.email==='karankaramchandani5@gmail.com' &&(
 							<Button danger onClick={showDeleteWarningHandler}>
 								DELETE
 							</Button>

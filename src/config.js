@@ -5,8 +5,8 @@ var UserProfile = (function() {
       return email; 
     };
   
-    var setEmail = function(email) {
-      email = email;     
+    var setEmail = function(em) {
+      email = em;     
     };
   
     return {
